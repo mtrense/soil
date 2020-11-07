@@ -1,0 +1,34 @@
+name: CI
+
+on: [push]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Set up Go 1.14
+        uses: actions/setup-go@v2
+        with:
+          go-version: 1.14
+        id: go
+
+      - name: Check out code into the Go module directory
+        uses: actions/checkout@v1
+
+      - name: Add $GOPATH/bin to $PATH
+        run: echo ::set-env name=PATH::$(echo $PATH:/Users/max/.go/bin)
+
+      - name: Install ginkgo
+        run: go get github.com/onsi/ginkgo/ginkgo
+
+      - name: Test all
+        run: make test
+        
+#      - name: Publish Release
+#        uses: softprops/action-gh-release@v1
+#        if: startsWith(github.ref, 'refs/tags/')
+#        with:
+#          files: dist/soil-*
+#        env:
+#          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
