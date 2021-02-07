@@ -16,6 +16,7 @@ func ConfigureDefaultLogging() {
 	ConfigureLogging(viper.GetString("loglevel"), viper.GetString("logfile"))
 }
 
+// Configures the root logger (see .L()) with the specified global log level and the given file.
 func ConfigureLogging(globalLevel, logfile string) {
 	level, err := zerolog.ParseLevel(globalLevel)
 	if err != nil {
