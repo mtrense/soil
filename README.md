@@ -4,6 +4,9 @@
 (https://github.com/rs/zerolog) for doing the 
 actual heavy lifting and adds a convenient interface on top of them.
 
+**Disclaimer**: Soil currently only supports a limited subset of feature that are available using these libraries. 
+Adding more features is not a big problem though, so if you need something please implement and provide a PR.
+
 ## Getting started
 
 Include soil in your project using modules:
@@ -104,9 +107,35 @@ NewCommandline("my_app",
 
 ## Flags
 
-Adding flags to a command works the same way as options and sub commands. Use the `Flag(name, type, ...options)` option
+Adding flags to a command works the same way as options and sub commands. Use the `Flag(name, type, ...options)` 
+command option like this:
+
+```go
+NewCommandLine("my_app",
+    Flag("some-flag", Str("default value"),
+        Persistent(),
+        Description("Description of some-flag"),
+        Abbr("s"),
+        Env(),
+    )
+)
+```
+
+### Flag Types
 
 ### Flag Options
+
+<dl>
+<dt><code>Persistent()</code></dt><dd>Add the flag to the persistent `FlagSet` (default is non-persistent).</dd>
+<dt><code>Description(description)</code></dt><dd>Set the description of the flag.</dd>
+<dt><code>Abbr(character)</code></dt><dd>Define the one-character abbreviation of the flag (like in `--help` and 
+`-h`).</dd>
+<dt><code>Env()</code></dt><dd>Enable setting this flag from the environment (only works with Viper's `AutomaticEnv` 
+feature, if you call `EnvironmentConfig(prefix)` as in the example above, this is taken care of).</dd>
+<dt><code>EnvName(name)</code></dt><dd>Same as `Env()`, but let's you customize the name of the environment 
+variable.</dd>
+<dt><code>Mandatory()</code></dt><dd>Mark the flag as mandatory.</dd>
+</dl>
 
 ### Common Flags
 
