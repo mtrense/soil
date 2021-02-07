@@ -2,14 +2,20 @@ package config
 
 import (
 	"fmt"
+	"os"
+
 	"github.com/spf13/cobra"
 	"github.com/spf13/viper"
-	"os"
 )
 
 func DefaultCLI(app *cobra.Command, version, commit, envPrefix string) {
 	app.AddCommand(CompletionCommand(), VersionCommand(version, commit))
 	ApplyLogFlags(app)
+	viper.SetEnvPrefix(envPrefix)
+	viper.AutomaticEnv()
+}
+
+func EnvironmentConfig(envPrefix string) {
 	viper.SetEnvPrefix(envPrefix)
 	viper.AutomaticEnv()
 }
