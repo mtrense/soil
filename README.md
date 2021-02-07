@@ -63,3 +63,50 @@ func execute(cmd *cobra.Command, args []string) {
     // Your code
 }
 ```
+
+## Commands
+
+The general Syntax for commands is `*Command(name, ...options)`. All options are implemented as functions following the 
+same interface and will be applied to the command at the end of the surrounding function call. Options are 
+stateless and safe to apply multiple times, in case you have an option or flag common to multiple commands/subcommands.
+
+### Subcommands
+
+You can add subcommands to any command by simply adding the `SubCommand(name, ...options)` option to the parent command 
+like this:
+
+```go
+NewCommandline("my_app",
+    SubCommand("subcommand1",
+        SubCommand("nested-subcommand1",
+        	options...),
+        options...),
+    SubCommand("subcommand2",
+        options...),
+)
+```
+
+### Command Options
+
+<dl>
+<dt><code>Alias(...aliases)</code></dt><dd>Adds the given strings as aliases to this command.</dd>
+<dt><code>Short(description)</code></dt><dd>Sets the short description of this command.</dd>
+<dt><code>Long(description)</code></dt><dd>Sets the long description of this command.</dd>
+<dt><code>ValidArgs(...args)</code></dt><dd>Adds the given string arguments as valid one's.</dd>
+<dt><code>Hidden()</code></dt><dd>Marks the command as hidden.</dd>
+<dt><code>Deprecated(message)</code></dt><dd>Marks the command as deprecated.</dd>
+<dt><code>Args(positionalArgs)</code></dt><dd>Set cobra positional args on the command.</dd>
+<dt><code>Run(function)</code></dt><dd>Set the function to run.</dd> 
+</dl>
+
+
+### Common Commands
+
+## Flags
+
+Adding flags to a command works the same way as options and sub commands. Use the `Flag(name, type, ...options)` option
+
+### Flag Options
+
+### Common Flags
+
