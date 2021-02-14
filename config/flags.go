@@ -29,7 +29,7 @@ func (s *FlagInfo) apply(cmd *cobra.Command) {
 		viper.BindPFlag(s.env, flag)
 	}
 	if s.mandatory {
-		cmd.MarkFlagRequired("s.name")
+		cmd.MarkFlagRequired(s.name)
 	}
 }
 
