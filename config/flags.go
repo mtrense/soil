@@ -1,6 +1,8 @@
 package config
 
 import (
+	"time"
+
 	"github.com/spf13/cobra"
 	"github.com/spf13/pflag"
 	"github.com/spf13/viper"
@@ -111,6 +113,46 @@ func Str(def string) FlagType {
 			fs.String(fi.name, def, fi.description)
 		} else {
 			fs.StringP(fi.name, fi.abbreviation, def, fi.description)
+		}
+	}
+}
+
+func Bool() FlagType {
+	return func(fi *FlagInfo, fs *pflag.FlagSet) {
+		if fi.abbreviation == "" {
+			fs.Bool(fi.name, false, fi.description)
+		} else {
+			fs.BoolP(fi.name, fi.abbreviation, false, fi.description)
+		}
+	}
+}
+
+func Int(def int) FlagType {
+	return func(fi *FlagInfo, fs *pflag.FlagSet) {
+		if fi.abbreviation == "" {
+			fs.Int(fi.name, def, fi.description)
+		} else {
+			fs.IntP(fi.name, fi.abbreviation, def, fi.description)
+		}
+	}
+}
+
+func Float64(def float64) FlagType {
+	return func(fi *FlagInfo, fs *pflag.FlagSet) {
+		if fi.abbreviation == "" {
+			fs.Float64(fi.name, def, fi.description)
+		} else {
+			fs.Float64P(fi.name, fi.abbreviation, def, fi.description)
+		}
+	}
+}
+
+func Duration(def time.Duration) FlagType {
+	return func(fi *FlagInfo, fs *pflag.FlagSet) {
+		if fi.abbreviation == "" {
+			fs.Duration(fi.name, def, fi.description)
+		} else {
+			fs.DurationP(fi.name, fi.abbreviation, def, fi.description)
 		}
 	}
 }
