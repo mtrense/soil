@@ -10,6 +10,8 @@ type FlagInfo struct {
 	name         string
 	persistent   bool
 	mandatory    bool
+	dirname      bool
+	filename     []string
 	abbreviation string
 	description  string
 	env          string
@@ -30,6 +32,12 @@ func (s *FlagInfo) apply(cmd *cobra.Command) {
 	}
 	if s.mandatory {
 		cmd.MarkFlagRequired(s.name)
+	}
+	if s.dirname {
+		cmd.MarkFlagDirname(s.name)
+	}
+	if s.filename != nil {
+		cmd.MarkFlagFilename(s.name, s.filename...)
 	}
 }
 
@@ -82,6 +90,18 @@ func EnvName(name string) FlagOption {
 func Mandatory() FlagOption {
 	return func(fi *FlagInfo) {
 		fi.mandatory = true
+	}
+}
+
+func Filename(extensions ...string) FlagOption {
+	return func(fi *FlagInfo) {
+		fi.filename = extensions
+	}
+}
+
+func Dirname() FlagOption {
+	return func(fi *FlagInfo) {
+		fi.dirname = true
 	}
 }
 
