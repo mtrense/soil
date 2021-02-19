@@ -107,6 +107,7 @@ func Dirname() FlagOption {
 	}
 }
 
+// Defines a string flag with a default value.
 func Str(def string) FlagType {
 	return func(fi *FlagInfo, fs *pflag.FlagSet) {
 		if fi.abbreviation == "" {
@@ -117,6 +118,7 @@ func Str(def string) FlagType {
 	}
 }
 
+// Defines a boolean flag. Boolean flags are false by default.
 func Bool() FlagType {
 	return func(fi *FlagInfo, fs *pflag.FlagSet) {
 		if fi.abbreviation == "" {
@@ -127,6 +129,7 @@ func Bool() FlagType {
 	}
 }
 
+// Defines an integer flag with a default value.
 func Int(def int) FlagType {
 	return func(fi *FlagInfo, fs *pflag.FlagSet) {
 		if fi.abbreviation == "" {
@@ -137,6 +140,7 @@ func Int(def int) FlagType {
 	}
 }
 
+// Defines a decimal flag with a default value.
 func Float64(def float64) FlagType {
 	return func(fi *FlagInfo, fs *pflag.FlagSet) {
 		if fi.abbreviation == "" {
@@ -147,6 +151,7 @@ func Float64(def float64) FlagType {
 	}
 }
 
+// Defines a duration flag with a default value.
 func Duration(def time.Duration) FlagType {
 	return func(fi *FlagInfo, fs *pflag.FlagSet) {
 		if fi.abbreviation == "" {

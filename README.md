@@ -105,6 +105,15 @@ NewCommandline("my_app",
 
 ### Common Commands
 
+Soil provides shortcuts for common commands:
+
+<dl>
+<dt><code>Version(version, commit)</code></dt><dd>Provides a <code>version</code> command and a 
+<code>--version</code> flag, that prints out the current version and commit hash.</dd>
+<dt><code>Completion()</code></dt><dd>Provides a <code>completion</code> command which provides convenient shell 
+completion for bash, zsh, fish and powershell.</dd>
+</dl>
+
 ## Flags
 
 Adding flags to a command works the same way as options and sub commands. Use the `Flag(name, type, ...options)` 
@@ -123,7 +132,19 @@ NewCommandLine("my_app",
 
 ### Flag Types
 
+Soil already provides several types of values for flags:
+
+<dl>
+<dt><code>Str(default)</code></dt><dd>A string value with a default.</dd>
+<dt><code>Int(default)</code></dt><dd>An integer value with a default.</dd>
+<dt><code>Bool()</code></dt><dd>A bool value. Defaults to false.</dd>
+<dt><code>Float(default)</code></dt><dd>A float value with a default.</dd>
+<dt><code>Duration(default)</code></dt><dd>A duration value with a default.</dd>
+</dl>
+
 ### Flag Options
+
+Options can be used to further specify the behavior of a flag:
 
 <dl>
 <dt><code>Persistent()</code></dt><dd>Add the flag to the persistent `FlagSet` (default is non-persistent).</dd>
@@ -135,6 +156,9 @@ feature, if you call `EnvironmentConfig(prefix)` as in the example above, this i
 <dt><code>EnvName(name)</code></dt><dd>Same as `Env()`, but let's you customize the name of the environment 
 variable.</dd>
 <dt><code>Mandatory()</code></dt><dd>Mark the flag as mandatory.</dd>
+<dt><code>Filename(...extensions)</code></dt><dd>Mark the flag as filename with the specified extensions. If 
+the argument list is empty, any extension is considered valid. This affects shell completion.</dd>
+<dt><code>Dirname()</code></dt><dd>Mark the flag as dirname. This affects shell completion.</dd>
 </dl>
 
 ### Common Flags
