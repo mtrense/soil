@@ -3,6 +3,8 @@ package config
 import (
 	"time"
 
+	"github.com/iancoleman/strcase"
+
 	"github.com/spf13/cobra"
 	"github.com/spf13/pflag"
 	"github.com/spf13/viper"
@@ -77,9 +79,11 @@ func Abbr(char string) FlagOption {
 	}
 }
 
+// Env option allows this Flag to be set from the environment. Please note that the name of the Flag is
+// converted to snake_case. For more control over the name use EnvName.
 func Env() FlagOption {
 	return func(fi *FlagInfo) {
-		fi.env = fi.name
+		fi.env = strcase.ToSnake(fi.name)
 	}
 }
 
