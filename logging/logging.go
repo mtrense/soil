@@ -37,5 +37,9 @@ func ConfigureLogging(globalLevel, logfile string) {
 }
 
 func L() *zerolog.Logger {
+	if logger == nil {
+		nop := zerolog.Nop()
+		return &nop
+	}
 	return logger
 }
