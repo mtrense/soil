@@ -46,6 +46,16 @@ func FlagLogLevel(level string) Applicant {
 		level = "warn"
 	}
 	return Flag("loglevel", Str(level),
+		Description("Minimum level for log messages (one of 'debug', 'info', 'warn', 'error', 'fatal', 'panic')"),
+		Persistent(),
+		Env())
+}
+
+func FlagLogLevelA(level string) Applicant {
+	if level == "" {
+		level = "warn"
+	}
+	return Flag("loglevel", Str(level),
 		Abbr("l"),
 		Description("Minimum level for log messages (one of 'debug', 'info', 'warn', 'error', 'fatal', 'panic')"),
 		Persistent(),
