@@ -73,3 +73,13 @@ func (s *Command) GenerateCobra() *cobra.Command {
 	}
 	return cmd
 }
+
+func (s *Command) Execute() error {
+	return s.GenerateCobra().Execute()
+}
+
+func (s *Command) ExecuteOrPanic() {
+	if err := s.Execute(); err != nil {
+		panic(err)
+	}
+}
