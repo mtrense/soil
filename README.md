@@ -1,8 +1,11 @@
 # Bootstrapping for Golang CLI Applications
 
-`soil` is using [Cobra](https://github.com/spf13/cobra), [Viper](https://github.com/spf13/viper) and [Zerolog]
-(https://github.com/rs/zerolog) for doing the 
-actual heavy lifting and adds a convenient interface on top of them.
+`soil` is using [Cobra][cobra], [Viper][viper] and [Zerolog][zerolog] for doing
+the actual heavy lifting and adds a convenient interface on top of them.
+
+[cobra]: https://github.com/spf13/cobra
+[viper]: https://github.com/spf13/viper
+[zerolog]: https://github.com/rs/zerolog
 
 **Disclaimer**: Soil currently only supports a limited subset of feature that are available using these libraries. 
 Adding more features is not a big problem though, so if you need something please implement and provide a PR.
